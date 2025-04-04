@@ -1,103 +1,181 @@
-import Image from "next/image";
+"use client";
+import Header from "./component/Header";
+import Card from "./component/Card";
+import SalesChart from "./component/LineChart";
+import SemiPieChart from "./component/SemiPieChart";
+import DataTable, { TableRow } from "./component/DataTable";
+import Sidebar from "./component/Sidebar";
+
+const tableData: TableRow[] = [
+  {
+    id: 1,
+    skuName: "Protein Bar 100g",
+    sales: "₹93,132.12",
+    outOfStock: "1.68%",
+    totalInventory: "931.9",
+    averageRank: "3.2",
+    estTraffic: "12,303",
+    estImpressions: "25,005",
+    ci: "1.6",
+    hasIncrease: false,
+  },
+  {
+    id: 2,
+    skuName: "Choco Bar 100g",
+    sales: "₹8,526.32",
+    outOfStock: "6.79%",
+    totalInventory: "679",
+    averageRank: "7",
+    estTraffic: "3,005",
+    estImpressions: "4,231",
+    ci: "3",
+    hasIncrease: true,
+    increasePercentage: "2.4%",
+  },
+  {
+    id: 3,
+    skuName: "SKU 3",
+    sales: "₹9,313",
+    outOfStock: "1.68%",
+    totalInventory: "931.9",
+    averageRank: "11",
+    estTraffic: "1,931.9",
+    estImpressions: "3,931.9",
+    ci: "1.6",
+    hasIncrease: false,
+  },
+  {
+    id: 4,
+    skuName: "SKU 4",
+    sales: "₹0",
+    outOfStock: "0%",
+    totalInventory: "0",
+    averageRank: "0",
+    estTraffic: "0",
+    estImpressions: "0",
+    ci: "0.0",
+    hasIncrease: false,
+  },
+];
+const tableDataCity: TableRow[] = [
+  {
+    id: 1,
+    skuName: "Delhi",
+    sales: "₹93,132.12",
+    outOfStock: "1.68%",
+    totalInventory: "931.9",
+    averageRank: "3.2",
+    estTraffic: "12,303",
+    estImpressions: "25,005",
+    ci: "1.6",
+    hasIncrease: false,
+  },
+  {
+    id: 2,
+    skuName: "Bengaluru",
+    sales: "₹8,526.32",
+    outOfStock: "6.79%",
+    totalInventory: "679",
+    averageRank: "7",
+    estTraffic: "3,005",
+    estImpressions: "4,231",
+    ci: "3",
+    hasIncrease: true,
+    increasePercentage: "2.4%",
+  },
+  {
+    id: 3,
+    skuName: "Bengaluru - SKU 2",
+    sales: "₹7,012.72",
+    outOfStock: "3.28%",
+    totalInventory: "328",
+    averageRank: "4",
+    estTraffic: "2,960",
+    estImpressions: "3,657",
+    ci: "-",
+    hasIncrease: true,
+    increasePercentage: "2.4%",
+  },
+  {
+    id: 4,
+    skuName: "SKU 3",
+    sales: "₹9,313",
+    outOfStock: "1.68%",
+    totalInventory: "931.9",
+    averageRank: "11",
+    estTraffic: "1,931.9",
+    estImpressions: "931.9",
+    ci: "1.6",
+    hasIncrease: false,
+  },
+  {
+    id: 5,
+    skuName: "SKU 4",
+    sales: "₹0",
+    outOfStock: "0%",
+    totalInventory: "0",
+    averageRank: "0",
+    estTraffic: "0",
+    estImpressions: "0",
+    ci: "0.0",
+    hasIncrease: false,
+  },
+  {
+    id: 6,
+    skuName: "Total",
+    sales: "₹2,93,132.12",
+    outOfStock: "16%",
+    totalInventory: "2931",
+    averageRank: "8.3",
+    estTraffic: "61,985",
+    estImpressions: "2,61,768",
+    ci: "1.6",
+    hasIncrease: false,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex min-h-screen bg-[#FAFAFA]">
+      {/* Sidebar */}
+      <Sidebar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      {/* Main Content */}
+      <div className="flex-1 border-1 border-[#0000001F] mt-[20px] rounded-t-[10px]">
+        <Header />
+        <div className="p-6 space-y-6">
+          {/* Top Section: Sales Charts and Top Cities */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card title="Sales (MRP)">
+              <SalesChart value={"125.49"} />
+            </Card>
+            <Card title="Total Quantity Sold">
+              <SalesChart value={"125.49"} />
+            </Card>
+            <Card title="Top Cities">
+              <SemiPieChart />
+            </Card>
+          </div>
+
+          {/* SKU Level Data Table */}
+          <Card title="SKU Level Data" showTitle={false}>
+            <DataTable
+              title="SKU level data"
+              subTitle="Analytics for all your SKUs"
+              tableDataD={tableData}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </Card>
+
+          {/* City Level Data Table */}
+          <Card title="City Level Data" showTitle={false}>
+            <DataTable
+              title="City level data"
+              subTitle="Analytics for all your Cities"
+              tableDataD={tableDataCity}
+            />
+          </Card>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
