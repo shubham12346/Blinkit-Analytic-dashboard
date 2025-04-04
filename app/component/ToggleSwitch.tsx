@@ -17,7 +17,7 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function ToggleCard() {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
 
   const handleToggle = () => {
     const newState = !isEnabled;
@@ -33,7 +33,7 @@ export default function ToggleCard() {
         className={`
           relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent 
           transition-colors duration-200 ease-in-out focus:outline-none  focus:ring-offset-2
-          ${isEnabled ? "bg-green-500" : "bg-gray-200"}
+          ${isEnabled ? "bg-[#027056]" : "bg-gray-200"}
         `}
         role="switch"
         aria-checked={isEnabled}

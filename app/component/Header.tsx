@@ -37,7 +37,7 @@ export default function Header() {
       </div>
       <div className="flex justify-start p-4 border-b-[1px] border-[#0000001F]">
         {/* Tabs */}
-        <div className="flex gap-4 border-[0.5px] border-white  rounded-2xl p-1 ">
+        <div className="flex gap-4 border-[0.5px] border-[#031B151A]  rounded-[12px] p-1 ">
           {tabs.map((tab, index) => (
             <button
               key={tab}
@@ -50,7 +50,7 @@ export default function Header() {
             >
               <div className="flex gap-1 items-center">
                 <Image
-                  src={Images[index + 1]}
+                  src={Images[index]}
                   alt={"image"}
                   className="h-[16px] w-[16px]"
                 />

@@ -14,7 +14,7 @@ const Company = () => {
   return (
     <div className="flex flex-col items-center space-y-1">
       {companies?.map((companyImage: any) => (
-        <div className="w-[40px] h-[40px] rounded-[12px] ">
+        <div className="w-[40px] h-[40px] rounded-[12px] " key={companyImage}>
           <Image
             src={companyImage}
             alt="image"

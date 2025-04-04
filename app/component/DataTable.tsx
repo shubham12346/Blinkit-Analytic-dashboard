@@ -8,6 +8,7 @@ interface DataTableProps {
   subTitle?: string;
   tableDataD?: TableRow[];
   tableTotalRow?: TableRow;
+  data?: any;
 }
 
 export interface TableRow {
@@ -93,12 +94,11 @@ export default function DataTable({
   subTitle = "Analytics for all your SKUs",
   tableDataD = tableData,
   tableTotalRow = tableTotalRow1,
+  data = {},
 }: DataTableProps) {
-  const [selectedRows, setSelectedRows] = useState<string[]>([
-    "Protein Bar 100g",
-    "Choco Bar 100g",
-  ]);
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
+  console.log("DataTable data", data);
   const handleRowSelection = (skuName: string) => {
     setSelectedRows((prev) =>
       prev.includes(skuName)
@@ -116,12 +116,12 @@ export default function DataTable({
           </h2>
           <p className="text-[14px] font-[400] text-[#4F4D55]">{subTitle}</p>
         </div>
-        <button className="flex items-center text-[14px] font-[500] px-4 py-2 bg-[#027056] text-white rounded-md">
+        <button className="flex items-center text-[14px] font-[400] px-4 py-2 bg-[#027056] text-white rounded-md">
           <span>Filters (1)</span>
           <ChevronDown className="ml-1" size={16} />
         </button>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-gray-200">

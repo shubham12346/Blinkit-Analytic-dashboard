@@ -5,6 +5,8 @@ import SalesChart from "./component/LineChart";
 import SemiPieChart from "./component/SemiPieChart";
 import DataTable, { TableRow } from "./component/DataTable";
 import Sidebar from "./component/Sidebar";
+import taskData from "./data/hiring-task.json";
+import CardRenderer from "./component/Cardrendered";
 
 const tableData: TableRow[] = [
   {
@@ -134,7 +136,23 @@ const tableDataCity: TableRow[] = [
   },
 ];
 
+const visualizationPriority = {
+  linechart: 1,
+  semipiechart: 2,
+  table: 3,
+};
+
 export default function Home() {
+  console.log("taskData", taskData);
+  const cards: any = taskData.cards.filter((card) => card.active);
+  const sortedCards: any = cards.sort(
+    (a: any, b: any) =>
+      visualizationPriority[a?.visualizationType] -
+      visualizationPriority[b?.visualizationType]
+  );
+  //  taskData.cards;
+  console.log("sortedCards", sortedCards);
+  const cardTypes = ["linechart", "semipiechart"];
   return (
     <div className="flex min-h-screen bg-[#FAFAFA]">
       {/* Sidebar */}
@@ -143,9 +161,24 @@ export default function Home() {
       {/* Main Content */}
       <div className="flex-1 border-1 border-[#0000001F] mt-[20px] rounded-t-[10px]">
         <Header />
+
+        <main className="p-6 grid grid-cols-12  gap-4">
+          {sortedCards.map((card: any) => (
+            <div
+              key={card.id}
+              className={`${
+                cardTypes.includes(card.visualizationType)
+                  ? "col-span-4"
+                  : "col-span-12"
+              } `}
+            >
+              <CardRenderer card={card} key={card.id} />
+            </div>
+          ))}
+        </main>
         <div className="p-6 space-y-6">
           {/* Top Section: Sales Charts and Top Cities */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card title="Sales (MRP)">
               <SalesChart value={"125.49"} />
             </Card>
@@ -155,25 +188,26 @@ export default function Home() {
             <Card title="Top Cities">
               <SemiPieChart />
             </Card>
-          </div>
+          </div> */}
 
           {/* SKU Level Data Table */}
-          <Card title="SKU Level Data" showTitle={false}>
+
+          {/* <Card title="SKU Level Data" showTitle={false}>
             <DataTable
               title="SKU level data"
               subTitle="Analytics for all your SKUs"
               tableDataD={tableData}
             />
-          </Card>
+          </Card> */}
 
           {/* City Level Data Table */}
-          <Card title="City Level Data" showTitle={false}>
+          {/* <Card title="City Level Data" showTitle={false}>
             <DataTable
               title="City level data"
               subTitle="Analytics for all your Cities"
               tableDataD={tableDataCity}
             />
-          </Card>
+          </Card> */}
         </div>
       </div>
     </div>

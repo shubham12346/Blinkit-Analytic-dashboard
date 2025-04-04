@@ -18,12 +18,13 @@ const data = [
   { day: "15", thisMonth: 5.1, lastMonth: 3.4 },
 ];
 
-export default function SalesChart(props: { value: string }) {
-  const { value } = props;
-  const renderChart = (value: string) => (
-    <div>
+export default function SalesChart(props: { title: string; data: any }) {
+  const { title, data } = props;
+  console.log("SalesChart data", data, title);
+  const renderChart = (title: string) => (
+    <div className="h-[292px]">
       <div className="mb-1 flex justify-between items-center px-[12px] pt-[14px]">
-        <div className="text-3xl font-semibold">{value}</div>
+        <div className="text-3xl font-semibold">{title}</div>
 
         <div className="flex  flex-col items-end text-sm text-gray-500">
           <span className="text-green-500 flex  items-center">
@@ -86,5 +87,5 @@ export default function SalesChart(props: { value: string }) {
     </div>
   );
 
-  return <div>{renderChart(value)}</div>;
+  return <div>{renderChart(title)}</div>;
 }
